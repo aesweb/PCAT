@@ -22,8 +22,16 @@ app.use(express.json());
 
 app.get('/', async (req, res) => {
   const photos = await Photo.find({})
-  res.render('index', { photos
+  res.render('index', { 
+    photos
    });
+});
+
+app.get('/photos/:id', async (req, res) => {
+  const photo = await Photo.findById(req.params.id) 
+  res.render('photo', {
+    photo
+  })
 });
 
 app.get('/about', (req, res) => {
